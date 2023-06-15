@@ -15,10 +15,11 @@ def choose_the_word(file_path):
     return chosen_word
 
 def determinate_winner(chosen_word):
-    minimun_attemp = 12
+    minimun_attemp = len(chosen_word) + 2
     guess_attempt = 0
     guesses = []
     chosen_word_list = []
+    letter_guessed = ''
     guess_loop = False
     winner = False
     #append the underscore on the guesses list
@@ -30,8 +31,12 @@ def determinate_winner(chosen_word):
 
     while guess_attempt != minimun_attemp and winner != True:
         while guess_loop != True:
-            guess_character = input("Please enter your guess character: ")
-            if len(guess_character) == 1:
+            guess_character = str(input("Please enter your guess character: "))
+            if not guess_character.isalpha():
+                print("Please enter only a Letter")
+            elif guess_character in letter_guessed:
+                print("You have already guessed that letter")
+            elif len(guess_character) == 1:
                 guess_loop = True
             else:
                 print("Please enter ONLY one character.")
@@ -47,13 +52,14 @@ def determinate_winner(chosen_word):
                     print(f"The {guess_character} is in the chosen word")
                     print(f"You have {minimun_attemp} tries")
                     guess_loop = False
+                    letter_guessed += guess_character
                     #If guesses (like a string) is equal to the copy of chosen word the first while loop will finish
                     if ''.join(guesses) == chosen_word_copy:
                         winner = True
-                    break
                 else:
                     guess_loop = False
             else:
+                letter_guessed += guess_character
                 minimun_attemp -=1
                 guess_loop = False
                 print(f"You have {minimun_attemp} tries")
