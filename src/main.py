@@ -38,13 +38,12 @@ def determinate_winner(chosen_word: str) -> bool:
         for word_character in chosen_word:
             if guess_character == word_character:
                 index: int = chosen_word_list.index(guess_character)
-                    #Save the guess character on the guess list
+                #Save the guess character on the guess list
                 guesses[index] = guess_character
-                    #Replace in the chosen word list the guess character for underscore
+                #Replace in the chosen word list the guess character for underscore
                 chosen_word_list[index] = '_'
-                    #update the chosen word
+                #update the chosen word
                 chosen_word = ''.join(chosen_word_list)
-                print(chosen_word)
                 print(f"The {guess_character} is in the chosen word")
                 print(f"You have {minimun_attemp} tries yet")
                 guess_loop = False
