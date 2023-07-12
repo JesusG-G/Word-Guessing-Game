@@ -15,12 +15,17 @@ def choose_the_word(file_path: str) -> str:
     return chosen_word
 
 def determinate_winner(chosen_word: str) -> bool:
+    #Create a copy of the chosen word
+    chosen_word_copy:str = chosen_word
+    #Establish the minimun attemp for the player
     minimun_attemp: int = len(chosen_word) + 2
+    
     letter_guessed: str = ''
     guess_loop: bool = False
-    #append the underscore on the guesses list
+    #Append the underscore on the guesses list
     guesses:list[str] = ["_" for _ in range(len(chosen_word))]
-    #create a list of the chosen word
+    
+    #Create a list of the chosen word
     chosen_word_list: list[str] = [c for c in chosen_word]
 
     while minimun_attemp >= 0:
@@ -63,7 +68,7 @@ def determinate_winner(chosen_word: str) -> bool:
             return True
         print(f"Your progress is {''.join(guesses)}")
 
-if __name__ == "__main__":
+def run_game():
     #call of the function 
     file_path: str = file_path_complete()
     chosen_word:str  = choose_the_word(file_path)
@@ -86,3 +91,6 @@ if __name__ == "__main__":
     else:
         print("Oh too bad! You Loose, please try again")
         print(f"The word was {chosen_word_copy}")
+
+if __name__ == "__main__":
+    run_game()
